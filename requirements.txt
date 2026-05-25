@@ -1,0 +1,9 @@
+google-genai
+pymongo
+PyPDF2
+newspaper3k
+lxml_html_clean
+beautifulsoup4
+python-dotenv
+tenacity
+streamlit
