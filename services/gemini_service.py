@@ -1,13 +1,15 @@
 import os
+from pathlib import Path
+
 from google import genai
 from tenacity import retry, stop_after_attempt, wait_exponential
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 
 class GeminiService:
     def __init__(self):
-        api_key = os.getenv("GOOGLE_API_KEY")
+        api_key = os.getenv("GOOGLE_API_KEY") or os.getenv("GEMINI_API_KEY")
         if not api_key:
             raise ValueError("GOOGLE_API_KEY environment variable is not set.")
         

@@ -1,4 +1,10 @@
+from pathlib import Path
+
 import streamlit as st
+from dotenv import load_dotenv
+
+load_dotenv(Path(__file__).resolve().parent / ".env")
+
 from services.summary_service import SummaryService
 from database.mongodb import db_instance
 

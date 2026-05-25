@@ -1,9 +1,11 @@
 import os
+from pathlib import Path
+
 from pymongo import MongoClient
 from pymongo.errors import ConnectionFailure
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
 
 class MongoDB:
     _instance = None
@@ -15,7 +17,7 @@ class MongoDB:
         return cls._instance
 
     def _connect(self):
-        url = os.getenv("MONGODB_URL")
+        url = os.getenv("MONGODB_URL") or os.getenv("MONGO_URI")
         if not url:
             self.db = None
             return
