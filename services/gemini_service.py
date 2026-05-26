@@ -39,8 +39,8 @@ class GeminiService:
             )
         
         self.client = genai.Client(api_key=api_key)
-        # Use a model that is currently available in the Gemini API
-        self.model_id = 'gemini-2.5-flash'
+        # Use gemini-2.0-flash which has a much higher free-tier daily quota (1500 RPD vs 20 RPD)
+        self.model_id = 'gemini-2.0-flash'
 
     @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=1, min=2, max=10), reraise=True)
     def generate_content(self, prompt: str) -> str:
